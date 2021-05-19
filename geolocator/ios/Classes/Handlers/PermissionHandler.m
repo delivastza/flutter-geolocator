@@ -46,11 +46,11 @@
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     
-    if ([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"] != nil) {
-        [self.locationManager requestWhenInUseAuthorization];
-    }
-    else if ([self containsLocationAlwaysDescription]) {
+    if ([self containsLocationAlwaysDescription]) {
         [self.locationManager requestAlwaysAuthorization];
+    }
+    else if ([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"] != nil) {
+        [self.locationManager requestWhenInUseAuthorization];
     }
     else {
         if (self.errorHandler) {
